@@ -31,3 +31,8 @@ python:
   version: 3.7
   install: 
     - requirements: Documentation/readthedocs/dependencies.txt
+
+formats:
+  - htmlzip
+  - epub
+  - pdf
