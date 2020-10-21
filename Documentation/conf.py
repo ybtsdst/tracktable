@@ -17,20 +17,18 @@ from __future__ import print_function
 import subprocess
 import sys
 import os
-import pprint
 
 tracktable_src = '../'
 tracktable_build = None
 
 debugging = False
 read_the_docs_build = (os.environ.get('READTHEDOCS', None) is not None)
-#print("DEBUG: read_the_docs_build: {}".format(read_the_docs_build))
 
 if read_the_docs_build or debugging:
     # We have to run these manually on readthedocs since we aren't
     # driving the build with CMake.
     pass
-    #subprocess.call(['doxygen', 'readthedocs/Doxyfile-readthedocs'])
+    subprocess.call(['doxygen', 'readthedocs/Doxyfile-readthedocs'])
 else:
     # If we're building all of Tracktable, we're operating in
     # the build directory instead of the source directory.  These
@@ -44,7 +42,6 @@ else:
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 
 sys.path.insert(0, os.path.abspath(os.path.join(tracktable_src, 'tracktable', 'Python')))
-#pprint.pprint(sys.path)
 
 # The autodoc Sphinx extension doesn't need to care about our Python
 # extension modules.  This list contains symbols that it should
@@ -158,18 +155,18 @@ pygments_style = 'sphinx'
 
 # -- Options for Breathe Doxygen <-> Sphinx bridge
 
-# if read_the_docs_build or debugging:
-#     breathe_projects = {'tracktable_cpp': 'readthedocs/doxygen/doxyxml'}
-# else:
-#     breathe_projects = {
-#         'tracktable_cpp': os.path.join(tracktable_build, 'Documentation', 'doxyxml')
-#     }
-# breathe_default_project = "tracktable_cpp"
+if read_the_docs_build or debugging:
+    breathe_projects = {'tracktable_cpp': 'readthedocs/doxygen/doxyxml'}
+else:
+    breathe_projects = {
+        'tracktable_cpp': os.path.join(tracktable_build, 'Documentation', 'doxyxml')
+    }
+breathe_default_project = "tracktable_cpp"
 
-# breathe_projects_source = {
-#     'tracktable_cpp':
-#         (tracktable_src + "/tracktable", ["Analysis/", "Core/", "Domain/", "IO/"])
-#     }
+breathe_projects_source = {
+    'tracktable_cpp':
+        (tracktable_src + "/tracktable", ["Analysis/", "Core/", "Domain/", "IO/"])
+    }
 
 # -- Options for HTML output ----------------------------------------------
 

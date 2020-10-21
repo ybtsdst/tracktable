@@ -48,7 +48,6 @@ start rendering maps and movies.
 .. toctree::
    :maxdepth: 5
 
-..
    cpp/tracktable.analysis.rst
    cpp/tracktable.core.rst
    cpp/tracktable.domain.rst
