@@ -70,7 +70,7 @@ function enable_debug () {
 ###
 
 # Set these values to be 0 to inhibit categories of output
-DEBUG=1
+DEBUG=0
 ERROR=1
 INFO=1
 
