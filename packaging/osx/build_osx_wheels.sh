@@ -429,6 +429,7 @@ function create_conda_environment () {
 		folium \
 		graphviz \
 		jupyter \
+		numpy \
 		pip \
 		pytz \
 		sphinx \
@@ -858,6 +859,10 @@ function main () {
 			msg_debug "Defaulting to TMPDIR: ${TMPDIR}"
 			WORKDIR_LOCATION=${TMPDIR}
 		fi
+	else
+		# Make sure we have an absolute path for the work directory
+		ABS_PATH=$(cd "${WORKDIR_LOCATION}" && pwd)
+		WORKDIR_LOCATION=${ABS_PATH}
 	fi
 
 	# By default, don't keep build trees
