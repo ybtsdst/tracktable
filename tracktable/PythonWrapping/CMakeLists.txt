@@ -281,9 +281,17 @@ add_library(_feature_vector_points MODULE
   ExplicitInstantiation/FeatureVectorWrapper_Extra.cpp
   )
 
-If(MSVC)
+# These modules end up containing so much code due to template 
+# instantiation that Microsoft Visual C++ needs to use a slightly
+# different object format.
+
+if(MSVC)
   set_property(SOURCE FeatureVectorModule.cpp APPEND_STRING PROPERTY COMPILE_FLAGS " /bigobj ")
-Endif(MSVC)
+  set_property(SOURCE TerrestrialDomainModule.cpp APPEND_STRING PROPERTY COMPILE_FLAGS " /bigobj")
+  set_property(SOURCE Cartesian2DDomainModule.cpp APPEND_STRING PROPERTY COMPILE_FLAGS " /bigobj")
+  set_property(SOURCE Cartesian3DDomainModule.cpp APPEND_STRING PROPERTY COMPILE_FLAGS " /bigobj")
+  set_property(SOURCE DomainAlgorithmOverloads.cpp APPEND_STRING PROPERTY COMPILE_FLAGS " /bigobj")
+endif(MSVC)
 set_property(TARGET _feature_vector_points PROPERTY FOLDER "Python")
 
 target_link_libraries(_feature_vector_points
