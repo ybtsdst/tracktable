@@ -565,7 +565,9 @@ function element_in () {
 function enable_anaconda () {
 	msg_info "Enabling Anaconda commands."
 	export PS1=
+	disable_debug;
 	eval "$(command conda 'shell.bash' 'hook' 2>/dev/null)"
+	enable_debug;
 }
 
 
