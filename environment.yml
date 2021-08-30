@@ -4,20 +4,12 @@ channels:
   - defaults
 dependencies:
   - python=3.8
-  - cartopy
-  - folium
-  - ipykernel
-  - matplotlib
-  - numpy
-  - pandoc
   - pip
-  - pykdtree
-  - pyshp
-  - pytz
-  - scipy
+  - tracktable
+  - ipykernel
+  - pandoc
   - sphinx
   - pip:
     - breathe
     - nbsphinx
     - nbsphinx-link
-    - tracktable
